@@ -1,0 +1,215 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+
+<title></title>
+<!--引用百度地图API-->
+
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=1.1&services=true"></script>
+</head>
+
+<body>
+  <!--百度地图容器-->
+  <table>
+  <tr>
+  <td><div style="width:500px;height:500px;border:#ccc solid 1px;" id="dituContent"></div></td>
+  <td>
+  
+  <input type="button"  value="创建可拖拽标注" onclick="CreateMarker_Self()" /><br /><br />
+  
+  <input type="button"  value="获取当前可拖拽标注点经纬度" onclick="GetMarker_Self_Point()" /><br /><br />
+  
+  <input type="button" value="保存当前可拖拽标注点" onclick="Show_SaveMarker()" /><br /><br />
+  
+  <div id="MarkerInfo" style="display:none">
+  标记点标题:<input type="text" id="Marker_title"/><br /><br />
+  标记点内容:<input type="text" id="Marker_content" /><br /><br />
+  <input type="button" value="确认保存"  onclick="Save_Marker_Self()"/>
+  <input type="button" value="取消" onclick=" document.getElementById('MarkerInfo').style.display = 'none';" />
+  </div><br />
+  
+  
+  <input type="button"  value="查看已存在标注信息" onclick="ShowMarks()" /><br /><br />
+  
+ <select id="point1_sel">
+ <option value="0">A</option>
+ <option value="1">B</option>
+ <option value="2">C</option>
+ <option value="3">D</option>
+ <option value="4">E</option>
+ <option value="5">F</option>
+ <option value="6">G</option>
+ <option value="7">H</option>
+ <option value="8">I</option>
+ <option value="9">J</option>
+
+ </select>
+  <select id="point2_sel">
+ <option value="0">A</option>
+ <option value="1">B</option>
+ <option value="2">C</option>
+ <option value="3">D</option>
+ <option value="4">E</option>
+ <option value="5">F</option>
+ <option value="6">G</option>
+ <option value="7">H</option>
+ <option value="8">I</option>
+ <option value="9">J</option>
+ </select>
+  <input type="button" value="计算两点间距离" onclick="GetMarkerDistance()" />
+  </td>
+  </tr>
+  
+  </table>
+  
+  
+ 
+  
+  
+</body>
+<script type="text/javascript">
+
+    initMap(); //创建和初始化地图
+
+    var mark_self; //自定义标注点
+    var mark_array = new Array(); //标注点数组
+    
+    CreateMarker(new BMap.Point(116.327212, 39.982268), "银网中心", "公司在这", 0);
+    CreateMarker(new BMap.Point(116.359276, 39.978958), "蓟门桥北", "我住在这", 1);
+    
+
+    //创建和初始化地图函数：
+    function initMap(){
+        createMap(); //创建地图
+        setMapEvent();//设置地图事件
+        addMapControl();//向地图添加控件
+    }
+    
+    //创建地图函数：
+    function createMap(){
+        var map = new BMap.Map("dituContent");//在百度地图容器中创建一个地图
+        var point = new BMap.Point(116.342807, 39.978564); //定义一个中心点坐标
+        map.centerAndZoom(point,14);//设定地图的中心点和坐标并将地图显示在地图容器中
+        window.map = map; //将map变量存储在全局
+    }
+    
+    //地图事件设置函数：
+    function setMapEvent(){
+        map.enableDragging();//启用地图拖拽事件，默认启用(可不写)
+        map.enableScrollWheelZoom();//启用地图滚轮放大缩小
+        map.enableDoubleClickZoom();//启用鼠标双击放大，默认启用(可不写)
+        map.enableKeyboard();//启用键盘上下左右键移动地图
+    }
+    
+    //地图控件添加函数：
+    function addMapControl(){
+        //向地图中添加缩放控件
+	var ctrl_nav = new BMap.NavigationControl({anchor:BMAP_ANCHOR_TOP_LEFT,type:BMAP_NAVIGATION_CONTROL_LARGE});
+	map.addControl(ctrl_nav);
+        //向地图中添加缩略图控件
+	var ctrl_ove = new BMap.OverviewMapControl({anchor:BMAP_ANCHOR_BOTTOM_RIGHT,isOpen:1});
+	map.addControl(ctrl_ove);
+        //向地图中添加比例尺控件
+	var ctrl_sca = new BMap.ScaleControl({anchor:BMAP_ANCHOR_BOTTOM_LEFT});
+	map.addControl(ctrl_sca);
+    }
+
+
+    //保存地图自定义标注点
+    function CreateMarker(point, title_content, info_content, index) {
+        var opts = {
+            width: 250,     // 信息窗口宽度
+            height: 100,     // 信息窗口高度
+            title: title_content  // 信息窗口标题
+        }
+        var infoWindow = new BMap.InfoWindow(info_content, opts);          // 创建信息窗口对象
+        var myIcon = new BMap.Icon("http://api.map.baidu.com/img/markers.png", new BMap.Size(23, 25), {
+            offset: new BMap.Size(10, 25),                                 // 指定定位位置
+            imageOffset: new BMap.Size(0, 0 - index * 25)                  // 设置图片偏移 
+        });                                                            
+        var marker = new BMap.Marker(point, { icon: myIcon });             //创建标注
+        //marker.setTitle("");                                             //为标注添加文本鼠标移动上面显示 
+        marker.addEventListener("click", function() {                      //为标注添加点击事件
+            this.openInfoWindow(infoWindow);
+        });
+        map.addOverlay(marker);                                           // 将标注添加到地图中
+
+        mark_array.push([index, point, title_content, info_content]);     //将标注点加入数组
+        mark_self = undefined;
+        
+    }
+    //创建可拖拽标注点
+    function CreateMarker_Self() {
+        if (mark_self != undefined) {alert("地图上已存在可拖拽标注点,请先保存该标注点，再创建新的标注点"); return;}
+        var marker = new BMap.Marker(map.getCenter());
+        marker.enableDragging();
+        map.addOverlay(marker);
+        mark_self = marker;
+    }
+    
+    //显示当前可拖拽标注点经纬度
+    function GetMarker_Self_Point() {
+        if (mark_self == undefined) {  alert("地图上不存在可拖拽标注点,请创建新的标注点"); return; }
+        alert("当前点经度:" + mark_self.getPoint().lng + " 当前点维度:" + mark_self.getPoint().lat);
+    }
+
+    function Show_SaveMarker() {
+        if (mark_self == undefined) { alert("地图上不存在可拖拽标注点,请创建新的标注点"); return; }
+        document.getElementById("MarkerInfo").style.display = "block";
+    }
+    //保存当前可拖拽标记点信息
+    function Save_Marker_Self() {
+     
+        var title=document.getElementById("Marker_title").value;
+        var content = document.getElementById("Marker_content").value;
+        CreateMarker(mark_self.getPoint(), title, content, mark_array.length);
+        alert("保存成功");
+        document.getElementById("MarkerInfo").style.display = "none";
+        
+    }
+    
+    //显示已保存的标注点信息
+    function ShowMarks() {
+        var info="";
+        for (var i = 0; i < mark_array.length; i++) {
+
+            info += "序号:" + mark_array[i][0] + " 经度:" + mark_array[i][1].lng + " 维度:" + mark_array[i][1].lat + " 标题:" + mark_array[i][2]
+            + " 内容:" + mark_array[i][3]+"\n";
+        }
+        alert(info);
+    }
+
+    //计算两点间直线距离
+    function GetDistance(point1, point2) {
+        var lat1 = point1.lat; var lng1 = point1.lng;
+        var lat2 = point2.lat; var lng2 = point2.lng;
+
+        var EARTH_RADIUS = 6378.137;//地球半径
+        
+        var radLat1 = lat1*Math.PI / 180.0;
+        var radLat2 = lat2* Math.PI / 180.0;
+
+        var a = radLat1 - radLat2;
+        var b = lng1 * Math.PI / 180.0 - lng2 * Math.PI / 180.0; 
+
+        var s = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(a / 2), 2) +
+        Math.cos(radLat1) * Math.cos(radLat2) * Math.pow(Math.sin(b / 2), 2)));
+        s = s * EARTH_RADIUS;
+        s = Math.round(s * 10000) / 10000;
+        return s;
+    }
+
+    //获取两个标注点间距离
+    function GetMarkerDistance() {
+    
+        var index1 = document.getElementById("point1_sel").value;
+        var index2 = document.getElementById("point2_sel").value;
+        if (mark_array[index1] == undefined || mark_array[index2] == undefined) {
+            alert("地图上不存在该点");return;
+        }
+        alert("两点间直线距离约为" + GetDistance(mark_array[index1][1], mark_array[index2][1]) + "公里");
+    
+    }
+   
+</script>
+</html>

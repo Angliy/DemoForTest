@@ -1,0 +1,27 @@
+
+[{
+	"name": "", 
+	"icon": "",
+	"value":""
+ },
+{
+	"name": "新增", 
+	"icon": "../hummer/images/icon/add.png",
+	"value":"icon-add"
+ }, 
+ {
+	"name":'删除',
+	"icon":"/hummer/images/icon/delete.png",
+	"value":"icon-delete"
+},
+{
+	"name": "编辑", 
+	"icon": "/hummer/images/icon/edit.png",
+	"value":"icon-edit"
+ },
+ {
+	"name": "查询", 
+	"icon": "/hummer/images/icon/query.png",
+	"value":"icon-query"
+ }
+]

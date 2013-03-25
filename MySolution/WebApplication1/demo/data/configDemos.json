@@ -1,0 +1,7 @@
+{'success':true,'rows':[{'id':'2020270','configNo':'DSA室','configValue':'2020290','note':'6'},
+{'id':'2080000','configNo':'心电功能科','configValue':'1010300','note':'6'},
+{'id':'1080306','configNo':'后装机','configValue':'1080300','note':'6'},
+{'id':'2010100','configNo':'常规室','configValue':'2010000','note':'6'},
+{'id':'2030300','configNo':'ECT室','configValue':'2030000','note':'6'}],
+'metaData':{totalProperty: 'totalcount',root: 'rows'},'totalcount':64 }
+

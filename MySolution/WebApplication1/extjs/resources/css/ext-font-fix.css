@@ -1,0 +1,56 @@
+.x-body {
+  font-family: tahoma, 宋体, arial, verdana, sans-serif; 
+}
+
+.x-tab button, .x-btn-default-small .x-btn-inner, .x-btn-default-medium .x-btn-inner, .x-btn-default-large .x-btn-inner, .x-btn-default-toolbar-small .x-btn-inner, .x-btn-default-toolbar-medium .x-btn-inner, .x-btn-default-toolbar-large .x-btn-inner, .x-menu-item-text, .x-html-editor-tb .x-font-select, .x-panel-header-default, .x-panel-header-text-default, .x-panel-header-default-framed, .x-panel-header-text-default-framed, .x-tip-header, .x-tip-body, .x-tip-header-text, .x-form-invalid-tip-body, .x-progress-text, .x-toolbar, .x-toolbar .x-form-item-label, .x-toolbar .x-toolbar-text, .x-window-header-default, .x-window-header-text-default, .x-tab-bar, .x-tab button, .x-grid-cell-inner, .x-column-header-text, .x-form-item-label, .x-border-box .x-form-text, .x-border-box .x-field-default-toolbar .x-form-text {
+  font-size: 12px;
+}
+
+.x-mask-msg div, .x-btn-group-header-text-default-framed, table.x-datepicker-inner a, .x-monthpicker-item a, .x-grid-empty, .x-column-header, .x-grid-group-title, .x-form-invalid-under, .x-fieldset-header, .x-dd-drag-ghost {
+  font: normal 12px tahoma, 宋体, arial, verdana, sans-serif;
+}
+
+.x-grid-row .x-grid-cell, .x-grid-row-editor .x-form-display-field, .x-grid-editor .x-form-text, .x-grid-row-editor .x-form-text {
+  font: normal 12px/15px tahoma, 宋体, arial, verdana, sans-serif;
+}
+
+.x-grid-rowbody {
+  font: normal 12px/13px tahoma, 宋体, arial, verdana, sans-serif;
+}
+
+.X-Fieldset-Header {
+  font: 12px/14px bold tahoma, 宋体, arial, verdana, sans-serif;
+}
+
+.x-column-header-inner {
+  padding-top: 4px !important;
+}
+
+.x-menu-item-link {
+  padding-top: 4px !important;
+}
+
+.x-tab button .x-tab-inner {
+  height: 15px;
+  line-height: 15px;
+}
+
+.x-tab-center {
+  height: 15px !important;
+}
+
+.x-border-box .x-form-text {
+    height: 22px;
+}
+.x-border-box .x-form-trigger {
+    height: 22px;
+}
+.x-border-box .x-field-default-toolbar .x-form-text {
+    height: 22px;
+}
+.x-border-box .x-field-default-toolbar .x-form-trigger {
+    height: 22px;
+}
+.x-accordion-hd {
+	padding: 4px 5px 4px 5px;
+}
