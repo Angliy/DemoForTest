@@ -1,9 +1,10 @@
 <%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default2.aspx.cs" Inherits="Default2" %>
-<!--thickbox-->
+<!--thickbox,ÊÓ²î²å¼þ-->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
+<title></title>
   <link rel="stylesheet" type="text/css" href="CSS/thickbox.css" media="all"/>
   <link rel="stylesheet" type="text/css" href="CSS/main.css" media="all"/>
     
@@ -151,24 +152,6 @@ The third argument is the original animation sequence which you want to clone.
     </script>--%>
     
 
-
-
-<a href="http://www.baidu.com" class="go" onclick="location.href='http://www.baidu.com'">baidu</a>
-<input type="button" class="btn"/>
-
-    
-
-
-<script type="text/javascript">
-    (function() {
-        $(".btn").click(function() {$(".go").trigger("click"); });
-    })();
-    location
-    
-   
-</script>
-
-  
    
 </body>
 </html>

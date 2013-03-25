@@ -5,11 +5,11 @@
 <html>
 	<head>
 		<title>图片切割测试</title>
-		<link href="CSS/jquery.Jcrop.css" type="text/css" rel="Stylesheet" media="screen">
+		<link href="CSS/jquery.Jcrop.css" type="text/css" rel="Stylesheet" media="screen"/>
 		<script type="text/javascript" src="js/jquery-1.4.4.min.js"></script>
 		<script type="text/javascript" src="js/jquery.Jcrop.min.js"></script>
 		<script type="text/javascript" src="js/jQuery.UtrialAvatarCutter.js"></script>
-		<style>
+		<style type="text/css">
 			div{float:left;margin-right:10px;}
 			
 		</style>

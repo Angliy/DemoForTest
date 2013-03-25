@@ -13,6 +13,8 @@
   <script type="text/javascript" src="ext/adapter/ext/ext-base.js"></script>
   <script type="text/javascript" src="ext/ext-all.js"></script>
   <script type="text/javascript" src="ext/ext-lang-zh_CN.js"></script>
+  
+  
 <script type="text/javascript">
 
 //Ext.onReady(function(){Ext.MessageBox.alert("test");});//Ext.onReady()在dom加载完后执行脚本
@@ -166,95 +168,7 @@
 //        failure: function() {
 
 //        }
-    //    });
-
-
-
-    Ext.onReady(function() {
-
-    var sm = new Ext.grid.CheckboxSelectionModel();
-    
-        //列信息
-        var columnModel = new Ext.grid.ColumnModel([
-    new Ext.grid.RowNumberer(), //自动计算行号
-    sm,
-    { header: '编号', dataIndex: 'id', width: 50, sortable: true }, //让grid支持按列排序
-    {header: '性别', dataIndex: 'sex', width: 50, renderer: renderSex },
-    { header: '名称', dataIndex: 'name' },
-    { header: '描述', dataIndex: 'descn', renderer: renderDescn }
-    ]);
-
-        function renderSex(value) {
-            if (value == 'male') {
-                return "<span style='color:red;'>男</span><img src='male.jpg' height=15 width=15/>";
-            } else {
-                return "<span>女</span><img src='female.jpg' height=15 width=15/>";
-            }
-        }
-
-        //数据
-        var data = [
-    ['1', 'male', '刘备', '大哥'],
-    ['2', 'male', '关羽', '二弟'],
-    ['3', 'female', '貂蝉', '美女'],
-    ['4', 'male', '张飞', '三弟'],
-    ['5', 'female', '大乔', '孙策的妻子']
-];
-
-        //列和数据绑定
-        var dataStore = new Ext.data.Store({
-            proxy: new Ext.data.MemoryProxy(data),
-            reader: new Ext.data.ArrayReader({}, [
-    { name: 'id' },
-    { name: 'sex' },
-    { name: 'name' },
-    { name: 'descn' }
-    ])
-        });
-        //dataStore.load();
-
-        //创建网格面板
-        var grid = new Ext.grid.GridPanel({
-            title: '大家好',
-            el: "grid",
-            autoHeight: true,
-            ds: dataStore, //ds为固定写法
-            cm: columnModel, //cm为固定写法
-            sm: sm,
-            viewConfig: {//自动按比例填满grid
-                forceFit: true
-            }
-
-            //    autoExpandColumn : 'descn1' //让指定的列自动伸展，从而填满表格(不过注意这里的'descn1'是id，加上id项)
-        });
-        grid.render();
-
-        /**
-        * 1、value是当前单元格的值，
-        * 2、cellmeta里保存的是cellId单元格id(貌似是列号),css是这个单元格的css样式，
-        * 3、record是这行的所有数据，你想要什么，record.data["id"]这样就获得了，
-        * 4、rowIndex是列号，不是从头往下数的意思，而是计算了分页以后的结果，
-        * 5、columnIndex列号
-        * 6、store,这个厉害，实际上这个是你构造表格的时候传递的ds,也就是说表格里所有的数据可以随便调用。
-        */
-        function renderDescn(value, cellmeta, record, rowIndex, columnIndex, store) {
-            var str = "<input type='button' value='查看详细信息' onclick='alert(\"" +
-        "此单元格的值是：" + value + "\\n" +
-        "此单元格的配置是：{cellId:" + cellmeta.cellId + ",id:" + cellmeta.id + ",css:" + cellmeta.css + "}\\n" +
-        "此单元格对应行的record是：" + record + "，一行的数据都在这里边" +
-        "这是第" + rowIndex + "行\\n" +
-        "这是第" + columnIndex + "列\\n" +
-        "此表格对应的Ext.data.Store在这里：" + store + "，随便用吧." +
-        "\")'>";
-            return str;
-        }
-
-     
-
-    });
-
-
-
+//    });
 
 
 </script>
@@ -266,15 +180,6 @@
      <input type="text" value="test" style="display:none" id="TestInput" />
     </div>--%>
     
-    <div id="grid"></div>
-    
-    
-    
-    
-    
-    
-    
-    
-   
+
 </body>
 </html>

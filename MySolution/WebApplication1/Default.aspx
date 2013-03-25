@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head runat="server">
     <title></title>
-    <link rel="stylesheet" type="text/css" href="../extjs/resources/css/ext-all.css"/>
+  
 </head>
 <body>
     <form id="form1" runat="server">
@@ -14,17 +14,6 @@
     </div>
     </form>
     
-    <script type="text/javascript" src="extjs/ext-all.js"></script>
-    
-    <script type="text/javascript">
-
-
-       
-
-
-    
-    
-    </script>
-    
+  
 </body>
 </html>
